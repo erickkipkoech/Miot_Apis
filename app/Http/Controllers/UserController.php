@@ -27,4 +27,8 @@ class UserController extends Controller
         ];
         return response($response,201);
     }
+    public function users(string $name){
+        return User::find($name);
+    }
 }
+
