@@ -11,11 +11,13 @@ class UserController extends Controller
     //Create Users
     public function register(Request $request){
         $fields=$request->validate([
-            'name'=>'required|string',
+            'full_name'=>'required|string',
+            'name'=>'required|string|min:5',
             'email'=>'required|email|unique:users,email',
             'password'=>'required|string|confirmed'
         ]);
         $user=User::create([
+            'full_name'=>$fields['full_name'],
             'name'=>$fields['name'],
             'email'=>$fields['email'],
             'password'=>bcrypt($fields['password'])
